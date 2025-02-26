@@ -15,7 +15,7 @@ dp = Dispatcher()
 
 @dp.message()
 async def delete_new_system_messages(message: types.Message):
-    if message.new_chat_members or message.left_chat_member:
+    if message.new_chat_members or message.left_chat_member or message.pinned_message:
         await message.delete()
 
 
