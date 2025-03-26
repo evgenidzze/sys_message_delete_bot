@@ -2,6 +2,7 @@ import asyncio
 import logging
 import os
 from aiogram import Bot, Dispatcher, types
+from aiogram.filters import Command
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -11,6 +12,12 @@ logging.basicConfig(level=logging.INFO)
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
+
+
+@dp.message(Command('rm_old_msgs'))
+async def rm_old_sys_msg(message: types.Message):
+    for message_id in range(9, 135):
+        await bot.delete_message(chat_id='2589587595', message_id=message_id)
 
 
 @dp.message()
